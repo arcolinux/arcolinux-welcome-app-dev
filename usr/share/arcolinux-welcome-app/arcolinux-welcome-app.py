@@ -57,10 +57,7 @@ class Main(Gtk.Window):
         print("Clicked")
 
     def on_ai_clicked(self, widget):
-        t = threading.Thread(target=self.run_app,
-                             args=(["env", "pkexec", "/usr/bin/calamares", "--style", "fusion" ],))
-        t.daemon = True
-        t.start()
+    	subprocess.Popen(["/usr/bin/calamares_polkit"], shell=False)
 
     def on_gp_clicked(self, widget):
         t = threading.Thread(target=self.run_app,
