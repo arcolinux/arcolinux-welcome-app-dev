@@ -58,14 +58,14 @@ class Main(Gtk.Window):
 
     def on_ai_clicked(self, widget):
         t = threading.Thread(target=self.run_app,
-                             args=(["cp", "/etc/calamares/settings-beginner.conf", "/etc/calamares/settings.conf"],))
+                             args=(["sudo", "cp", "/etc/calamares/settings-beginner.conf", "/etc/calamares/settings.conf"],))
         t.daemon = True
         t.start() 
         subprocess.Popen(["/usr/bin/calamares_polkit", "-d"], shell=False)
      
     def on_aica_clicked(self, widget):
         t = threading.Thread(target=self.run_app,
-                             args=(["cp", "/etc/calamares/settings-advanced.conf", "/etc/calamares/settings.conf"],))
+                             args=(["sudo", "cp", "/etc/calamares/settings-advanced.conf", "/etc/calamares/settings.conf"],))
         t.daemon = True
         t.start()
         subprocess.Popen(["/usr/bin/calamares_polkit", "-d"], shell=False)  
