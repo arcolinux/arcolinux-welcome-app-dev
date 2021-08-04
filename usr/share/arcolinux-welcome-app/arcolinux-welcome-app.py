@@ -57,11 +57,11 @@ class Main(Gtk.Window):
         print("Clicked")
 
     def on_ai_clicked(self, widget):
-        subprocess.Popen(["cp", "/etc/calamares/settings-beginner.conf", "/etc/calamares/settings.conf"], shell=False)    
+        subprocess.Popen(["pkexec", "cp", "/etc/calamares/settings-beginner.conf", "/etc/calamares/settings.conf"], shell=False)    
         subprocess.Popen(["/usr/bin/calamares_polkit", "-d"], shell=False)
      
     def on_aica_clicked(self, widget):
-        subprocess.Popen(["cp", "/etc/calamares/settings-advanced.conf", "/etc/calamares/settings.conf"], shell=False)
+        subprocess.Popen(["pkexec", "cp", "/etc/calamares/settings-advanced.conf", "/etc/calamares/settings.conf"], shell=False)
         subprocess.Popen(["/usr/bin/calamares_polkit", "-d"], shell=False)  
 
     def on_gp_clicked(self, widget):

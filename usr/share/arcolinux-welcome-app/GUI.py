@@ -7,7 +7,7 @@ import getpass
 from os.path import expanduser
 
 DEBUG = False
-DEBUG = True
+#DEBUG = True
 
 base_dir = os.path.dirname(os.path.realpath(__file__))
 home = expanduser("~")
