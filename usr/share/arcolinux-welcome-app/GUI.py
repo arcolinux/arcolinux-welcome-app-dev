@@ -133,10 +133,10 @@ def GUI(self, Gtk, GdkPixbuf):
     # grid.add(button1)
     if username == user:
         grid = Gtk.Grid()
-        grid.attach(self.button8, 2, 0, 2, 2)
+        grid.attach(self.button8, 0, 0, 2, 2)
         #grid.attach(button13, 2, 0, 2, 2)
-        grid.attach(button1, 2, 2, 2, 2)
-        grid.attach(button2, 2, 4, 2, 2)
+        grid.attach(button2, 2, 2, 2, 2)
+        grid.attach(button1, 4, 0, 2, 2)
         #grid.attach(buttonca, 3, 4, 2, 2)
         grid.set_column_homogeneous(True)
         grid.set_row_homogeneous(True)
