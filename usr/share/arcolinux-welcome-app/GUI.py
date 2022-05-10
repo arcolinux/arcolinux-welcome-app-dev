@@ -381,7 +381,7 @@ def GUI(self, Gtk, GdkPixbuf):
     launchBox.set_property("has-tooltip", True)
     launchBox.connect("query-tooltip",
                       self.tooltip_callback,
-                      "Run Arcolinux Tweak Tool")
+                      "Launch Arcolinux Tweak Tool")
 
     hbox6.pack_start(launchBox, False, False, 0)
     #hbox6.pack_start(infoE, False, False, 0)
