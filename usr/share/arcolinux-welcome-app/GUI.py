@@ -127,6 +127,12 @@ def GUI(self, Gtk, GdkPixbuf):
     self.button8.connect("clicked", self.on_mirror_clicked)
     self.button8.set_size_request(420, 70)
 
+    self.buttonatt = Gtk.Button(label="")
+    buttonatt_label = self.buttonatt.get_child()
+    buttonatt_label.set_markup("<span size='large'><b>Launch Arch Linux Tweak Tool</b></span>")
+    self.buttonatt.connect("clicked", self.on_buttonatt_clicked)
+    self.buttonatt.set_size_request(420, 70)
+
     #button13 = Gtk.Button(label="")
     #button13_label = button13.get_child()
     #button13_label.set_markup("<span size='large'><b>ArcoLinux Calamares Tool</b></span>")
@@ -146,7 +152,9 @@ def GUI(self, Gtk, GdkPixbuf):
     else:
         grid = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         self.button8.set_size_request(420, 70)
+        self.buttonatt.set_size_request(420, 70)
         grid.pack_start(self.button8, True, False, 0)
+        grid.pack_start(self.buttonatt, True, False, 0)
     # grid.set_row_homogeneous(True)
 
     # ======================================================================
@@ -364,7 +372,7 @@ def GUI(self, Gtk, GdkPixbuf):
     # ======================================================================
     launchBox = Gtk.EventBox()
     pblaunch = GdkPixbuf.Pixbuf().new_from_file_at_size(
-        os.path.join(base_dir, 'images/hefftor.svg'), 40, 40)
+        os.path.join(base_dir, 'images/archlinux-tweak-tool.svg'), 40, 40)
     launchimage = Gtk.Image().new_from_pixbuf(pblaunch)
 
     launchBox.add(launchimage)
@@ -376,7 +384,7 @@ def GUI(self, Gtk, GdkPixbuf):
                       "Run Arcolinux Tweak Tool")
 
     hbox6.pack_start(launchBox, False, False, 0)
-    hbox6.pack_start(infoE, False, False, 0)
+    #hbox6.pack_start(infoE, False, False, 0)
     # ======================================================================
     #                   PACK TO WINDOW
     # ======================================================================
