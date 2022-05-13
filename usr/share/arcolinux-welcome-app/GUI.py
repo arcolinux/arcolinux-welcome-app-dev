@@ -281,6 +281,7 @@ def GUI(self, Gtk, GdkPixbuf):
     inE = Gtk.EventBox()
     liE = Gtk.EventBox()
     pE = Gtk.EventBox()
+    yE = Gtk.EventBox()
     dE = Gtk.EventBox()
     tgE = Gtk.EventBox()
 
@@ -308,6 +309,10 @@ def GUI(self, Gtk, GdkPixbuf):
         os.path.join(base_dir, 'images/patreon.png'), 28, 28)
     pimage = Gtk.Image().new_from_pixbuf(pbp)
 
+    pby = GdkPixbuf.Pixbuf().new_from_file_at_size(
+        os.path.join(base_dir, 'images/youtube.png'), 28, 28)
+    yimage = Gtk.Image().new_from_pixbuf(pby)
+
     pbd = GdkPixbuf.Pixbuf().new_from_file_at_size(
         os.path.join(base_dir, 'images/discord.png'), 28, 28)
     dimage = Gtk.Image().new_from_pixbuf(pbd)
@@ -322,6 +327,7 @@ def GUI(self, Gtk, GdkPixbuf):
     inE.add(inimage)
     liE.add(liimage)
     pE.add(pimage)
+    yE.add(yimage)
     dE.add(dimage)
     tgE.add(tgimage)
 
@@ -337,6 +343,8 @@ def GUI(self, Gtk, GdkPixbuf):
                 "https://www.linkedin.com/in/arcolinux/")
     pE.connect("button_press_event", self.on_social_clicked,
                "https://www.patreon.com/arcolinux")
+    yE.connect("button_press_event", self.on_social_clicked,
+               "https://youtube.com/c/erikdubois")
     dE.connect("button_press_event", self.on_social_clicked,
                "https://discordapp.com/invite/R2amEEz")
     tgE.connect("button_press_event", self.on_social_clicked,
@@ -348,6 +356,7 @@ def GUI(self, Gtk, GdkPixbuf):
     inE.set_property("has-tooltip", True)
     liE.set_property("has-tooltip", True)
     pE.set_property("has-tooltip", True)
+    yE.set_property("has-tooltip", True)
     dE.set_property("has-tooltip", True)
     tgE.set_property("has-tooltip", True)
 
@@ -357,6 +366,7 @@ def GUI(self, Gtk, GdkPixbuf):
     inE.connect("query-tooltip", self.tooltip_callback, "Instagram")
     liE.connect("query-tooltip", self.tooltip_callback, "LinkedIn")
     pE.connect("query-tooltip", self.tooltip_callback, "Patreon")
+    yE.connect("query-tooltip", self.tooltip_callback, "Youtube")
     dE.connect("query-tooltip", self.tooltip_callback, "Discord")
     tgE.connect("query-tooltip", self.tooltip_callback, "Telegram")
 
@@ -367,6 +377,7 @@ def GUI(self, Gtk, GdkPixbuf):
     hbox3.pack_start(liE, False, False, 0)
     hbox3.pack_start(pE, False, False, 0)
 
+    hbox6.pack_start(yE, False, False, 0)
     hbox6.pack_start(dE, False, False, 0)
     hbox6.pack_start(tgE, False, False, 0)
     if username == user:
