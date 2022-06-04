@@ -109,40 +109,40 @@ def GUI(self, Gtk, GdkPixbuf):
     button1_label = button1.get_child()
     button1_label.set_markup("<span size='large'><b>Run GParted</b></span>")
     button1.connect("clicked", self.on_gp_clicked)
-    button1.set_size_request(0, 80)
+    button1.set_size_request(0, 50)
 
     button2 = Gtk.Button(label="")
     button2_label = button2.get_child()
     button2_label.set_markup("<span size='large'><b>Easy Installation</b></span>")
 
     button2.connect("clicked", self.on_ai_clicked)
-    button2.set_size_request(0, 80)
+    button2.set_size_request(0, 50)
 
     buttonca = Gtk.Button(label="")
     buttonca_label = buttonca.get_child()
     buttonca_label.set_markup("<span size='large'><b>Advanced Installation</b></span>")
 
     buttonca.connect("clicked", self.on_aica_clicked)
-    buttonca.set_size_request(0, 80)
+    buttonca.set_size_request(0, 50)
 
 
     self.button8 = Gtk.Button(label="")
     button8_label = self.button8.get_child()
     button8_label.set_markup("<span size='large'><b>Update Arch Linux mirrors</b></span>")
     self.button8.connect("clicked", self.on_mirror_clicked)
-    self.button8.set_size_request(420, 70)
+    self.button8.set_size_request(300, 50)
 
     self.buttonatt = Gtk.Button(label="")
     buttonatt_label = self.buttonatt.get_child()
     buttonatt_label.set_markup("<span size='large'><b>Launch Arch Linux Tweak Tool</b></span>")
     self.buttonatt.connect("clicked", self.on_buttonatt_clicked)
-    self.buttonatt.set_size_request(420, 70)
+    self.buttonatt.set_size_request(300, 50)
 
     self.buttonpamac = Gtk.Button(label="")
     buttonpamac_label = self.buttonpamac.get_child()
     buttonpamac_label.set_markup("<span size='large'><b>Install software</b></span>")
     self.buttonpamac.connect("clicked", self.on_buttonpamac_clicked)
-    self.buttonpamac.set_size_request(420, 70)
+    self.buttonpamac.set_size_request(300, 70)
 
     # grid.add(button1)
     if username == user:
@@ -156,9 +156,9 @@ def GUI(self, Gtk, GdkPixbuf):
         grid.set_row_homogeneous(True)
     else:
         grid = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-        self.button8.set_size_request(300, 70)
-        self.buttonatt.set_size_request(300, 70)
-        self.buttonpamac.set_size_request(300, 70)
+        self.button8.set_size_request(100, 70)
+        self.buttonatt.set_size_request(100, 70)
+        self.buttonpamac.set_size_request(100, 70)
         grid.pack_start(self.buttonpamac, True, False, 0)
         grid.pack_start(self.buttonatt, True, False, 0)
         grid.pack_start(self.button8, True, False, 0)
@@ -253,12 +253,12 @@ def GUI(self, Gtk, GdkPixbuf):
     button10.connect("clicked", self.on_link_clicked,
                      "https://www.arcolinux.info/joining-the-arcolinux-auditing-group/")
 
-    button11 = Gtk.Button(label="Youtube ArcoLinux Channel")
+    button11 = Gtk.Button(label="Youtube")
     button11.connect("clicked", self.on_link_clicked,
                      "https://www.youtube.com/erikdubois")
 
     button12 = Gtk.Button(label="Quit")
-    button12.set_size_request(200, 50)
+    button12.set_size_request(100, 50)
     button12.connect("clicked", Gtk.main_quit)
     #button12.set_tooltip_markup("Quit the ArcoLinux Welcome App")
 
