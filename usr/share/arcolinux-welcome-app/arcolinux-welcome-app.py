@@ -64,7 +64,7 @@ class Main(Gtk.Window):
             ),
         )
         t.daemon = True
-        # t.start()
+        t.start()
         # t = threading.Thread(
         #     target=self.run_app,
         #     args=(
@@ -208,7 +208,19 @@ class Main(Gtk.Window):
             t.start()
 
     def on_buttonpamac_clicked(self, widget):
-        t = threading.Thread(target=self.run_app, args=(["/usr/bin/pamac-manager"],))
+        if not self.check_package_installed("sofirem-git"):
+            install = "pacman -S sofirem-git --noconfirm"
+            subprocess.call(
+                install.split(" "),
+                shell=False,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+            )
+            t = threading.Thread(target=self.run_app, args=(["/usr/bin/sofirem"],))
+            t.daemon = True
+            t.start()
+
+        t = threading.Thread(target=self.run_app, args=(["/usr/bin/sofirem"],))
         t.daemon = True
         t.start()
 
