@@ -123,7 +123,9 @@ def GUI(self, Gtk, GdkPixbuf):
 
     buttongrub = Gtk.Button(label="")
     buttongrub_label = buttongrub.get_child()
-    buttongrub_label.set_markup("<span size='large'><b>Grub installation</b></span>")
+    buttongrub_label.set_markup(
+        "<span size='large'><b>Grub installation (default)</b></span>"
+    )
     buttongrub.connect("clicked", self.on_grub_clicked)
     buttongrub.set_size_request(0, 60)
 
