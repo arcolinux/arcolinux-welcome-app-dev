@@ -72,7 +72,7 @@ class Main(Gtk.Window):
             threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
         else:
             print(
-                "[ERROR]: Pacman lockfile found %s, is another pacman process running?"
+                "[ERROR]: Pacman lockfile found %s, is another pacman process running ?"
                 % self.pacman_lockfile
             )
             md = Gtk.MessageDialog(
@@ -80,7 +80,7 @@ class Main(Gtk.Window):
                 flags=0,
                 message_type=Gtk.MessageType.WARNING,
                 buttons=Gtk.ButtonsType.OK,
-                text="Pacman lockfile found %s, is another pacman process running?"
+                text="Pacman lockfile found %s, is another pacman process running ?"
                 % self.pacman_lockfile,
                 title="Warning",
             )
@@ -100,7 +100,7 @@ class Main(Gtk.Window):
             threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
         else:
             print(
-                "[ERROR]: Pacman lockfile found %s, is another pacman process running?"
+                "[ERROR]: Pacman lockfile found %s, is another pacman process running ?"
                 % self.pacman_lockfile
             )
             md = Gtk.MessageDialog(
@@ -108,7 +108,7 @@ class Main(Gtk.Window):
                 flags=0,
                 message_type=Gtk.MessageType.WARNING,
                 buttons=Gtk.ButtonsType.OK,
-                text="Pacman lockfile found %s, is another pacman process running?"
+                text="Pacman lockfile found %s, is another pacman process running ?"
                 % self.pacman_lockfile,
                 title="Warning",
             )
@@ -142,7 +142,7 @@ class Main(Gtk.Window):
             subprocess.Popen([clamares_polkit, "-d"], shell=False)
         else:
             print(
-                "[ERROR]: Pacman lockfile found %s, is another pacman process running?"
+                "[ERROR]: Pacman lockfile found %s, is another pacman process running ?"
                 % self.pacman_lockfile
             )
             md = Gtk.MessageDialog(
@@ -150,7 +150,7 @@ class Main(Gtk.Window):
                 flags=0,
                 message_type=Gtk.MessageType.WARNING,
                 buttons=Gtk.ButtonsType.OK,
-                text="Pacman lockfile found %s, is another pacman process running?"
+                text="Pacman lockfile found %s, is another pacman process running ?"
                 % self.pacman_lockfile,
                 title="Warning",
             )
@@ -182,7 +182,7 @@ class Main(Gtk.Window):
             subprocess.Popen([clamares_polkit, "-d"], shell=False)
         else:
             print(
-                "[ERROR]: Pacman lockfile found %s, is another pacman process running?"
+                "[ERROR]: Pacman lockfile found %s, is another pacman process running ?"
                 % self.pacman_lockfile
             )
             md = Gtk.MessageDialog(
@@ -190,7 +190,7 @@ class Main(Gtk.Window):
                 flags=0,
                 message_type=Gtk.MessageType.WARNING,
                 buttons=Gtk.ButtonsType.OK,
-                text="Pacman lockfile found %s, is another pacman process running?"
+                text="Pacman lockfile found %s, is another pacman process running ?"
                 % self.pacman_lockfile,
                 title="Warning",
             )
@@ -213,15 +213,17 @@ class Main(Gtk.Window):
                     parent=self,
                     flags=0,
                     message_type=Gtk.MessageType.WARNING,
-                    buttons=Gtk.ButtonsType.YES_NO,
+                    buttons=Gtk.ButtonsType.NONE,
                     text="%s was not found" % "gparted",
                     title="Warning",
                 )
-                md.format_secondary_markup("Would you like to install it?")
+                md.add_buttons("Yes", 1)
+                md.add_buttons("No", 0)
+                md.format_secondary_markup("Would you like to install it ?")
                 response = md.run()
                 md.destroy()
 
-                if response == Gtk.ResponseType.YES:
+                if response == 1:
                     threading.Thread(
                         target=self.check_package_queue, daemon=True
                     ).start()
@@ -236,7 +238,7 @@ class Main(Gtk.Window):
                     ).start()
             else:
                 print(
-                    "[ERROR]: Pacman lockfile found %s, is another pacman process running?"
+                    "[ERROR]: Pacman lockfile found %s, is another pacman process running ?"
                     % self.pacman_lockfile
                 )
                 md = Gtk.MessageDialog(
@@ -244,7 +246,7 @@ class Main(Gtk.Window):
                     flags=0,
                     message_type=Gtk.MessageType.WARNING,
                     buttons=Gtk.ButtonsType.OK,
-                    text="Pacman lockfile found %s, is another pacman process running?"
+                    text="Pacman lockfile found %s, is another pacman process running ?"
                     % self.pacman_lockfile,
                     title="Warning",
                 )
@@ -269,21 +271,31 @@ class Main(Gtk.Window):
             "--needed",
         ]
 
+        dev_package = "archlinux-tweak-tool-dev-git"
+
+        if self.check_package_installed(dev_package):
+            print("[WARN]: %s package found ..removing it" % dev_package)
+            self.remove_dev_package(
+                ["sudo", "pacman", "-Rs", dev_package, "--noconfirm"], dev_package
+            )
+
         if not self.check_package_installed("archlinux-tweak-tool-git"):
             if not os.path.exists(self.pacman_lockfile):
                 md = Gtk.MessageDialog(
                     parent=self,
                     flags=0,
                     message_type=Gtk.MessageType.WARNING,
-                    buttons=Gtk.ButtonsType.YES_NO,
+                    buttons=Gtk.ButtonsType.NONE,
                     text="%s was not found" % "Arch Linux Tweak Tool",
                     title="Warning",
                 )
-                md.format_secondary_markup("Would you like to install it?")
+                md.add_buttons("Yes", 1)
+                md.add_buttons("No", 0)
+                md.format_secondary_markup("Would you like to install it ?")
                 response = md.run()
                 md.destroy()
 
-                if response == Gtk.ResponseType.YES:
+                if response == 1:
                     threading.Thread(
                         target=self.check_package_queue, daemon=True
                     ).start()
@@ -298,7 +310,7 @@ class Main(Gtk.Window):
                     ).start()
             else:
                 print(
-                    "[ERROR]: Pacman lockfile found %s, is another pacman process running?"
+                    "[ERROR]: Pacman lockfile found %s, is another pacman process running ?"
                     % self.pacman_lockfile
                 )
                 md = Gtk.MessageDialog(
@@ -306,7 +318,7 @@ class Main(Gtk.Window):
                     flags=0,
                     message_type=Gtk.MessageType.WARNING,
                     buttons=Gtk.ButtonsType.OK,
-                    text="Pacman lockfile found %s, is another pacman process running?"
+                    text="Pacman lockfile found %s, is another pacman process running ?"
                     % self.pacman_lockfile,
                     title="Warning",
                 )
@@ -352,15 +364,17 @@ class Main(Gtk.Window):
                     parent=self,
                     flags=0,
                     message_type=Gtk.MessageType.WARNING,
-                    buttons=Gtk.ButtonsType.YES_NO,
+                    buttons=Gtk.ButtonsType.NONE,
                     text="%s was not found\n" % "arandr",
                     title="Warning",
                 )
-                md.format_secondary_markup("Would you like to install it?")
+                md.add_buttons("Yes", 1)
+                md.add_buttons("No", 0)
+                md.format_secondary_markup("Would you like to install it ?")
                 response = md.run()
                 md.destroy()
 
-                if response == Gtk.ResponseType.YES:
+                if response == 1:
                     threading.Thread(
                         target=self.check_package_queue, daemon=True
                     ).start()
@@ -375,7 +389,7 @@ class Main(Gtk.Window):
                     ).start()
             else:
                 print(
-                    "[ERROR]: Pacman lockfile found %s, is another pacman process running?"
+                    "[ERROR]: Pacman lockfile found %s, is another pacman process running ?"
                     % self.pacman_lockfile
                 )
                 md = Gtk.MessageDialog(
@@ -383,7 +397,7 @@ class Main(Gtk.Window):
                     flags=0,
                     message_type=Gtk.MessageType.WARNING,
                     buttons=Gtk.ButtonsType.OK,
-                    text="Pacman lockfile found %s, is another pacman process running?"
+                    text="Pacman lockfile found %s, is another pacman process running ?"
                     % self.pacman_lockfile,
                     title="Warning",
                 )
@@ -404,21 +418,31 @@ class Main(Gtk.Window):
             "--needed",
         ]
 
+        dev_package = "sofirem-dev-git"
+
+        if self.check_package_installed(dev_package):
+            print("[WARN]: %s package found ..removing it" % dev_package)
+            self.remove_dev_package(
+                ["sudo", "pacman", "-Rs", dev_package, "--noconfirm"], dev_package
+            )
+
         if not self.check_package_installed("sofirem-git"):
             if not os.path.exists(self.pacman_lockfile):
                 md = Gtk.MessageDialog(
                     parent=self,
                     flags=0,
                     message_type=Gtk.MessageType.WARNING,
-                    buttons=Gtk.ButtonsType.YES_NO,
+                    buttons=Gtk.ButtonsType.NONE,
                     text="%s was not found" % "Sofirem",
                     title="Warning",
                 )
-                md.format_secondary_markup("Would you like to install it?")
+                md.add_buttons("Yes", 1)
+                md.add_buttons("No", 0)
+                md.format_secondary_markup("Would you like to install it ?")
                 response = md.run()
                 md.destroy()
 
-                if response == Gtk.ResponseType.YES:
+                if response == 1:
                     threading.Thread(
                         target=self.check_package_queue, daemon=True
                     ).start()
@@ -433,7 +457,7 @@ class Main(Gtk.Window):
                     ).start()
             else:
                 print(
-                    "[ERROR]: Pacman lockfile found %s, is another pacman process running?"
+                    "[ERROR]: Pacman lockfile found %s, is another pacman process running ?"
                     % self.pacman_lockfile
                 )
                 md = Gtk.MessageDialog(
@@ -441,7 +465,7 @@ class Main(Gtk.Window):
                     flags=0,
                     message_type=Gtk.MessageType.WARNING,
                     buttons=Gtk.ButtonsType.OK,
-                    text="Pacman lockfile found %s, is another pacman process running?"
+                    text="Pacman lockfile found %s, is another pacman process running ?"
                     % self.pacman_lockfile,
                     title="Warning",
                 )
@@ -470,6 +494,30 @@ class Main(Gtk.Window):
                     print("[ERROR]: Exception in check_package_queue(): %s" % e)
                 finally:
                     self.pkg_queue.task_done()
+
+    def remove_dev_package(self, pacman_cmd, package):
+        try:
+            with subprocess.Popen(
+                pacman_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                bufsize=1,
+                universal_newlines=True,
+            ) as process:
+                while True:
+                    if process.poll() is not None:
+                        break
+
+                    for line in process.stdout:
+                        print(line.strip())
+
+                if not self.check_package_installed(package):
+                    print("[INFO]: Pacman %s uninstall completed" % package)
+                else:
+                    print("[ERROR]: Pacman %s uninstall failed" % package)
+
+        except Exception as e:
+            print("[ERROR]: Exception in remove_dev_package(): %s" % e)
 
     def install_package(self, app_cmd, pacman_cmd, package):
         try:
@@ -579,7 +627,6 @@ class Main(Gtk.Window):
             threading.Thread(target=self.run_app, daemon=True).start()
 
         else:
-            print("att")
             md = Gtk.MessageDialog(
                 parent=self,
                 flags=0,
