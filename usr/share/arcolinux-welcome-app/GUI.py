@@ -16,7 +16,7 @@ username = getpass.getuser()
 if DEBUG:
     user = username
 else:
-    user = ".liveuser"
+    user = "liveuser"
 
 Settings = home + "/.config/arcolinux-welcome-app/settings.conf"
 Skel_Settings = "/etc/skel/.config/arcolinux-welcome-app/settings.conf"
