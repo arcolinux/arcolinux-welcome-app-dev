@@ -18,7 +18,6 @@ from queue import Queue
 import ui.GUI as GUI
 from ui.MessageDialog import MessageDialogBootloader
 from ui.MessageDialog import MessageDialog
-from ui.AboutDialog import AboutDialog
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("Wnck", "3.0")
@@ -128,10 +127,6 @@ class Main(Gtk.Window):
 
     def on_update_clicked(self, widget):
         print("Clicked")
-
-    def on_about_clicked(self, widget):
-        about_dialog = AboutDialog(GUI.debug)
-        about_dialog.show_all()
 
     def convert_to_hex(self, rgba_color):
         red = int(rgba_color.red * 255)
