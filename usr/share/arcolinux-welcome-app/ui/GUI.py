@@ -9,7 +9,6 @@ from ui.Stack import Stack
 from ui.StackSwitcher import StackSwitcher
 
 debug = False
-# DEBUG = True
 
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 home = expanduser("~")
@@ -379,7 +378,11 @@ def GUI(self, Gtk, GdkPixbuf):
     #                   ADD PAGES TO STACK
     # ======================================================================
 
-    stack.add_titled(vbox_install_stack, "Installation", "Installation")
+    if debug is True:
+        stack.add_titled(vbox_install_stack, "Installation", "Installation")
+    else:
+        stack.add_titled(vbox_install_stack, "Welcome", "Welcome")
+
     stack.add_titled(vbox_info_stack, "Information", "Information")
     stack.add_titled(vbox_credits_stack, "Credits", "Credits")
 

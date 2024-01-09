@@ -10,5 +10,5 @@ It also can be launched to auto start-up post installation.
 
 ### Post installation window
 
-![Post-install](https://github.com/arcolinux/arcolinux-welcome-app-dev/assets/121581829/4a1390fb-307d-4881-a76b-c45fbc673ac8)
+![Post-install](https://github.com/arcolinux/arcolinux-welcome-app-dev/assets/121581829/732b12d8-71c4-4ae8-bfa2-22836127da71)
 
