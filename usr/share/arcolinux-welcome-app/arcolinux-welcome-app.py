@@ -4,8 +4,9 @@
 # =================================================================
 import gi
 import os
-import conflicts
-import sys
+
+# import conflicts
+# import sys
 
 # import wnck
 import subprocess
@@ -20,8 +21,8 @@ from ui.MessageDialog import MessageDialogBootloader
 from ui.MessageDialog import MessageDialog
 
 gi.require_version("Gtk", "3.0")
-gi.require_version("Wnck", "3.0")
-from gi.repository import Gtk, GdkPixbuf, GLib, Wnck, Gdk  # noqa
+# gi.require_version("Wnck", "3.0")
+from gi.repository import Gtk, GdkPixbuf, GLib, Gdk  # Wnck
 
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 REMOTE_SERVER = "www.google.com"
@@ -714,7 +715,7 @@ class Main(Gtk.Window):
         t.daemon = True
         t.start()
 
-    def on_info_clicked(self, widget, event):
+    def _on_info_clicked(self, widget, event):
         window_list = Wnck.Screen.get_default().get_windows()
         state = False
         for win in window_list:

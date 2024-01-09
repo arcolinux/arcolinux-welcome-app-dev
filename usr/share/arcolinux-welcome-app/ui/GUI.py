@@ -8,7 +8,7 @@ from os.path import expanduser
 from ui.Stack import Stack
 from ui.StackSwitcher import StackSwitcher
 
-debug = False
+debug = True
 # DEBUG = True
 
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -316,20 +316,41 @@ def GUI(self, Gtk, GdkPixbuf):
     hbox_social_img.add(tg_event)
     hbox_social_img.add(att_event)
 
+    label_info_header1 = Gtk.Label(xalign=0, yalign=0)
+    label_info_header1.set_name("label_style")
+    label_info_header1.set_justify(Gtk.Justification.CENTER)
+    label_info_header1.set_halign(Gtk.Align.CENTER)
+
+    label_info_header2 = Gtk.Label(xalign=0.5, yalign=0.5)
+    label_info_header2.set_name("label_style")
+    label_info_header2.set_justify(Gtk.Justification.CENTER)
+    label_info_header2.set_halign(Gtk.Align.CENTER)
+    label_info_header2.set_markup("<b>You have the freedom of choice</b>")
+
+    label_info2 = Gtk.Label(xalign=0.5, yalign=0.5)
+    label_info2.set_justify(Gtk.Justification.CENTER)
+
     if debug is True:
+        label_info_header1.set_markup("<b>ArcoLinux Installer</b>")
+
         desc = (
-            f"<b>ArcoLinux installer</b>\n\n"
             f"We advise to clean the computer with GParted before installing.\n"
             f"During the Calamares installation many options will be open to you.\n\n"
             f"<b>Easy installation</b> (Recommended) option is offline, no internet connection required\n"
-            f"<b>Advanced installation</b> option is online, this requires a working internet connection\n\n"
-            f"<b>You have the freedom of choice</b>\n\n"
+            f"<b>Advanced installation</b> option is online, this requires a working internet connection"
+        )
+
+        desc2 = (
             f"We communicate with our community via a diversity of social media.\n"
             f"Do join us to learn the latest news, ask questions or for casual talk.\n"
             f"<b> <a href='{app_telegram}' title='{app_telegram}'>Telegram</a></b> is for chitchat - <b> <a href='{app_discord}' title='{app_discord}'>Discord</a></b> is for assistance.\n"
             f"We have a <b> <a href='{app_forums}' title='{app_forums}'>Forum</a></b> for the longer and more technical questions.\n\n"
         )
+
+        label_info2.set_markup(desc2)
+
     else:
+        label_info_header1.set_markup("<b>Welcome to ArcoLinux</b>")
         desc = (
             f"We communicate with our community via a diversity of social media.\n"
             f"Do join us to learn the latest news, ask questions or for casual talk.\n"
@@ -341,9 +362,22 @@ def GUI(self, Gtk, GdkPixbuf):
     label_info.set_markup(desc)
     label_info.set_justify(Gtk.Justification.CENTER)
 
+    # ======================================================================
+    #                   PACK THE INFO BOX
+    # ======================================================================
+
+    vbox_info.pack_start(label_info_header1, False, False, 0)
     vbox_info.pack_start(label_info, False, False, 0)
+    if len(label_info2.get_text()) > 0:
+        vbox_info.pack_start(label_info_header2, False, False, 0)
+        vbox_info.pack_start(label_info2, False, False, 0)
+
     vbox_info.pack_start(hbox_social_links, False, False, 0)
     vbox_info.pack_start(hbox_social_img, False, False, 0)
+
+    # ======================================================================
+    #                   ADD PAGES TO STACK
+    # ======================================================================
 
     stack.add_titled(vbox_install_stack, "Installation", "Installation")
     stack.add_titled(vbox_info_stack, "Information", "Information")
@@ -544,17 +578,34 @@ def GUI(self, Gtk, GdkPixbuf):
     #                   CREDITS
     # ======================================================================
 
+    label_credits_title = Gtk.Label(xalign=0.5, yalign=0.5)
+    label_credits_title.set_name("label_style")
+    label_credits_title.set_markup("<b>Development Team</b>")
+    label_credits_title.set_halign(Gtk.Align.CENTER)
+    label_credits_title.set_justify(Gtk.Justification.CENTER)
+
+    label_credits_support = Gtk.Label(xalign=0.5, yalign=0.5)
+    label_credits_support.set_name("label_style")
+    label_credits_support.set_markup(
+        f"For support or to report any issues use <b><a href='{app_discord}' title='{app_discord}'>Discord</a></b>"
+    )
+    label_credits_support.set_halign(Gtk.Align.CENTER)
+    label_credits_support.set_justify(Gtk.Justification.CENTER)
+
     label_credits = Gtk.Label(xalign=0, yalign=0)
     label_credits.set_markup(
-        f"<b>Development Team</b>\n"
         f"Brad Heffernan\n"
         f"Erik Dubois\n"
-        f"Fennec\n\n"
-        f"For support, or to report any issues use <b><a href='{app_discord}' title='{app_discord}'>Discord</a></b>"
+        f"Fennec\n"
+        # f"For support, or to report any issues use <b><a href='{app_discord}' title='{app_discord}'>Discord</a></b>"
     )
     label_credits.set_justify(Gtk.Justification.CENTER)
     label_credits.set_line_wrap(True)
+    label_credits.set_halign(Gtk.Align.CENTER)
+
+    vbox_credits.pack_start(label_credits_title, False, False, 0)
     vbox_credits.pack_start(label_credits, False, False, 0)
+    vbox_credits.pack_start(label_credits_support, False, False, 0)
 
     # ======================================================================
     #                   FOOTER BUTTON LINKS
