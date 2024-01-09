@@ -30,14 +30,6 @@ dot_desktop = "/usr/share/applications/arcolinux-welcome-app.desktop"
 autostart = home + "/.config/autostart/arcolinux-welcome-app.desktop"
 
 
-# check if path exists
-def file_check(path):
-    if os.path.isfile(path):
-        return True
-
-    return False
-
-
 def GUI(self, Gtk, GdkPixbuf):
     # initialize main vbox
     self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)

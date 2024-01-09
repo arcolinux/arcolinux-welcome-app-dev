@@ -123,6 +123,15 @@ class Main(Gtk.Window):
         else:
             self.popover.show_all()
 
+    # check if path exists
+    # used to check if /sys/firmware/efi/fw_platform_size exists
+    # if yes then display systemd-boot bootloader install option
+    def file_check(self, path):
+        if os.path.isfile(path):
+            return True
+
+        return False
+
     def on_mirror_clicked(self, widget):
         threading.Thread(target=self.mirror_update, daemon=True).start()
 
@@ -177,7 +186,7 @@ class Main(Gtk.Window):
 
             threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
 
-            efi_file_check = GUI.file_check("/sys/firmware/efi/fw_platform_size")
+            efi_file_check = self.file_check("/sys/firmware/efi/fw_platform_size")
 
             if efi_file_check is True:
                 md = MessageDialogBootloader(
@@ -249,7 +258,7 @@ class Main(Gtk.Window):
 
             threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
 
-            efi_file_check = GUI.file_check("/sys/firmware/efi/fw_platform_size")
+            efi_file_check = self.file_check("/sys/firmware/efi/fw_platform_size")
 
             if efi_file_check is True:
                 md = MessageDialogBootloader(
