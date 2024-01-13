@@ -71,7 +71,10 @@ def GUI(self, Gtk, GdkPixbuf):
     hbox_install_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
     hbox_install_buttons.set_halign(Gtk.Align.CENTER)
 
-    hbox_util_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+    # hbox_second_row_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
+    # hbox_second_row_buttons.set_halign(Gtk.Align.CENTER)
+
+    hbox_util_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
     hbox_util_buttons.set_halign(Gtk.Align.CENTER)
 
     vbox_welcome_title = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -83,6 +86,7 @@ def GUI(self, Gtk, GdkPixbuf):
     vbox_install_stack.pack_start(vbox_welcome_title, False, False, 0)
     vbox_install_stack.pack_start(vbox_welcome_message, False, False, 0)
     vbox_install_stack.pack_start(hbox_install_buttons, False, False, 0)
+    # vbox_install_stack.pack_start(hbox_second_row_buttons, False, False, 0)
     vbox_install_stack.pack_start(hbox_util_buttons, False, False, 0)
 
     # vbox to contain all the information text
@@ -483,13 +487,13 @@ def GUI(self, Gtk, GdkPixbuf):
     self.button_mirrors = Gtk.Button(label="")
     button_mirrors_label = self.button_mirrors.get_child()
 
-    button_mirrors_label.set_markup("<b>Update Arch Linux mirrors</b>")
+    button_mirrors_label.set_markup("<b>Update Arch Mirrors</b>")
 
     self.button_mirrors.connect("clicked", self.on_mirror_clicked)
     self.button_mirrors.set_size_request(100, 30)
     self.button_mirrors.set_property("has-tooltip", True)
     self.button_mirrors.connect(
-        "query-tooltip", self.tooltip_callback, "Update Arch Linux mirrorlist"
+        "query-tooltip", self.tooltip_callback, "Update Arch Linux Mirrorlist"
     )
 
     # ======================================================================
@@ -542,7 +546,7 @@ def GUI(self, Gtk, GdkPixbuf):
         self.button_att.set_size_request(100, 30)
         self.button_sofi.set_size_request(100, 30)
 
-        self.button_mirrors.get_child().set_markup("<b>Update Arch Linux Mirrors</b>")
+        self.button_mirrors.get_child().set_markup("<b>Update Arch Mirrors</b>")
 
         self.button_att.get_child().set_markup("<b>Launch Arch Linux Tweak Tool</b>")
 
@@ -553,6 +557,17 @@ def GUI(self, Gtk, GdkPixbuf):
         hbox_install_buttons.pack_start(self.button_sofi, False, True, 0)
         hbox_install_buttons.pack_start(self.button_att, False, True, 0)
         hbox_install_buttons.pack_start(self.button_mirrors, False, True, 0)
+
+        # self.button_arco_website = Gtk.Button(label="")
+        # self.button_arco_website.get_child().set_markup("<b>ArcoLinux Website</b>")
+        # self.button_arco_website.set_size_request(100, 30)
+        #
+        # self.button_probe = Gtk.Button(label="")
+        # self.button_probe.get_child().set_markup("<b>Run Probe</b>")
+        # self.button_probe.set_size_request(100, 30)
+
+        # hbox_second_row_buttons.pack_start(self.button_arco_website,False,True,0)
+        # hbox_second_row_buttons.pack_start(self.button_probe,False,True,0)
 
         if self.session == "x11":
             hbox_install_buttons.pack_start(button_resolution, False, True, 0)
