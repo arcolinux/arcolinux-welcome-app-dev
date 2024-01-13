@@ -122,7 +122,9 @@ class MessageDialogBootloader(Gtk.Dialog):
 
         title_message = "You have chosen the %s option" % install_method
 
-        title_second_message = "Would you like to install <b><span size='large'>Grub</span></b> or <b><span size='large'>Systemd-boot</span></b> ?"
+        title_second_message = (
+            "Would you like to install <b>Grub</b> or <b>Systemd-boot</b> ?"
+        )
 
         btn_bootloader_grub = Gtk.Button(label="Install Grub")
         btn_bootloader_grub.set_size_request(100, 30)
@@ -218,6 +220,8 @@ class MessageDialogBootloader(Gtk.Dialog):
             self.vbox.add(self.label_message)
             self.show_all()
 
+        self.destroy()
+
     # select systemd-boot
     def on_bootloader_systemd_boot_clicked(self, widget):
         if not os.path.exists(self.pacman_lockfile):
@@ -264,3 +268,5 @@ class MessageDialogBootloader(Gtk.Dialog):
 
             self.vbox.add(self.label_message)
             self.show_all()
+
+        self.destroy()
