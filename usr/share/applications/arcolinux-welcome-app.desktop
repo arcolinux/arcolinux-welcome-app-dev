@@ -3,7 +3,7 @@ Name=ArcoLinux Welcome
 GenericName=ArcoLinux Welcome
 X-GNOME-FullName=ArcoLinux Welcome
 Comment=Welcome Application for ArcoLinux Installs
-Exec=/usr/local/bin/arcolinux-welcome-app
+Exec=GTK_THEME=deepin-dark
 Icon=arcolinux-hello
 Terminal=false
 Type=Application
