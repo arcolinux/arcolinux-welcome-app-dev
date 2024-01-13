@@ -641,10 +641,15 @@ def GUI(self, Gtk, GdkPixbuf):
     check.connect("toggled", self.startup_toggle)
     check.set_active(autostart)
 
-    hbox_footer_buttons.pack_end(check, False, False, 0)
-
     if username == user:
         hbox_footer_buttons.pack_start(hbox_user, True, False, 0)
+
+        vbox_auto_start = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+        vbox_auto_start.set_halign(Gtk.Align.CENTER)
+        vbox_auto_start.pack_end(check, True, False, 0)
+        self.vbox.pack_end(vbox_auto_start, True, False, 0)
+    else:
+        hbox_footer_buttons.pack_end(check, False, False, 0)
 
     # ======================================================================
     #                   PACK TO WINDOW
