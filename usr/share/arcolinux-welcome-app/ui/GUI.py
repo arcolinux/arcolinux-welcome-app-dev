@@ -8,7 +8,7 @@ from os.path import expanduser
 from ui.Stack import Stack
 from ui.StackSwitcher import StackSwitcher
 
-debug = False
+debug = True
 
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 home = expanduser("~")
@@ -71,8 +71,8 @@ def GUI(self, Gtk, GdkPixbuf):
     hbox_install_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
     hbox_install_buttons.set_halign(Gtk.Align.CENTER)
 
-    # hbox_second_row_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
-    # hbox_second_row_buttons.set_halign(Gtk.Align.CENTER)
+    vbox_quit = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+    vbox_quit.set_halign(Gtk.Align.CENTER)
 
     hbox_util_buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
     hbox_util_buttons.set_halign(Gtk.Align.CENTER)
@@ -88,6 +88,7 @@ def GUI(self, Gtk, GdkPixbuf):
     vbox_install_stack.pack_start(hbox_install_buttons, False, False, 0)
     # vbox_install_stack.pack_start(hbox_second_row_buttons, False, False, 0)
     vbox_install_stack.pack_start(hbox_util_buttons, False, False, 0)
+    vbox_install_stack.pack_start(vbox_quit, False, False, 0)
 
     # vbox to contain all the information text
     vbox_info_stack = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
@@ -618,14 +619,15 @@ def GUI(self, Gtk, GdkPixbuf):
     vbox_credits.pack_start(label_credits_support, False, False, 0)
 
     # ======================================================================
-    #                   FOOTER BUTTON LINKS
+    #                   QUIT BUTTON
     # ======================================================================
 
-    button_quit = Gtk.Button(label="Quit")
-    button_quit.set_size_request(200, 50)
+    button_quit = Gtk.Button(label="")
+    button_quit.get_child().set_markup("<b>Quit</b>")
+    button_quit.set_size_request(100, 30)
     button_quit.connect("clicked", Gtk.main_quit)
 
-    hbox_footer_buttons.set_halign(Gtk.Align.CENTER)
+    vbox_quit.pack_start(button_quit, False, False, 0)
 
     # ======================================================================
     #                   Add to startup
@@ -640,6 +642,8 @@ def GUI(self, Gtk, GdkPixbuf):
     )
     check.connect("toggled", self.startup_toggle)
     check.set_active(autostart)
+
+    hbox_footer_buttons.set_halign(Gtk.Align.CENTER)
 
     if username == user:
         hbox_footer_buttons.pack_start(hbox_user, True, False, 0)
