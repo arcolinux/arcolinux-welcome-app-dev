@@ -42,13 +42,16 @@ def GUI(self, Gtk, GdkPixbuf):
 
     self.set_titlebar(headerbar)
 
-    headerbar.pack_start(
-        Gtk.Image().new_from_pixbuf(
-            GdkPixbuf.Pixbuf().new_from_file_at_size(
-                os.path.join(base_dir, "images/arcolinux.png"), 16, 16
+    # x11 shows icon inside headerbar twice, only set icon when on wayland
+    if self.session is not None:
+        if self.session == "wayland":
+            headerbar.pack_start(
+                Gtk.Image().new_from_pixbuf(
+                    GdkPixbuf.Pixbuf().new_from_file_at_size(
+                        os.path.join(base_dir, "images/arcolinux.png"), 16, 16
+                    )
+                )
             )
-        )
-    )
 
     # initialize the stack
     stack = Stack(transition_type="CROSSFADE")
