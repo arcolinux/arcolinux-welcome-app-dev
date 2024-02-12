@@ -186,7 +186,11 @@ class MessageDialogBootloader(Gtk.Dialog):
                 Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
                 if os.path.exists("/usr/share/xsessions/nimdow.desktop"):
                     subprocess.Popen(
-                        ["sudo", "-E", "/usr/bin/calamares", "-d"], shell=False
+                        ["sudo", "/usr/bin/calamares", "-d"],
+                        shell=False,
+                        # ["sudo", "dbus-launch", "/usr/bin/calamares_polkit", "-d"],
+                        # ["sudo", "dbus-launch", "/usr/bin/calamares", "-d"],
+                        # shell=False,
                     )
                 else:
                     subprocess.Popen([self.calamares_polkit, "-d"], shell=False)
@@ -240,7 +244,11 @@ class MessageDialogBootloader(Gtk.Dialog):
                 ]
                 if os.path.exists("/usr/share/xsessions/nimdow.desktop"):
                     subprocess.Popen(
-                        ["sudo", "-E", "/usr/bin/calamares", "-d"], shell=False
+                        ["sudo", "/usr/bin/calamares", "-d"],
+                        shell=False,
+                        # ["sudo", "dbus-launch", "/usr/bin/calamares_polkit", "-d"],
+                        # ["sudo", "dbus-launch", "/usr/bin/calamares", "-d"],
+                        # shell=False,
                     )
                 else:
                     Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
