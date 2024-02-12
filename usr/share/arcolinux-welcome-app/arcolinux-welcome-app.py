@@ -95,6 +95,8 @@ class Main(Gtk.Window):
         self.sudo_username = os.getlogin()
 
         self.calamares_polkit = "/usr/bin/calamares_polkit"
+        if os.path.exists("/usr/share/xsessions/nimdow.desktop"):
+            self.calamares_polkit = "sudo -E /usr/bin/calamares -d"
 
         self.session = None
 
