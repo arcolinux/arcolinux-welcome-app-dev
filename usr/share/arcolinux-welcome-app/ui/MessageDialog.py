@@ -185,7 +185,9 @@ class MessageDialogBootloader(Gtk.Dialog):
 
                 Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
                 if os.path.exists("/usr/share/xsessions/nimdow.desktop"):
-                    subprocess.Popen([self.calamares_polkit, "-d"], shell=False)
+                    subprocess.Popen(
+                        ["pkexec", "env", "DISPLAY=$DISPLAY", "XAUTHORITY=$XAUTHORITY, "/usr/bin/calamares", "-d"], shell=False
+                    )
                 else:
                     subprocess.Popen([self.calamares_polkit, "-d"], shell=False)
             else:
