@@ -188,7 +188,7 @@ class MessageDialogBootloader(Gtk.Dialog):
         if os.path.exists(self.boot_selection):
             os.remove(self.boot_selection)
 
-    def create_selection_file(filepath):
+    def create_selection_file(self, filepath):
         """Creates a file named 'xxx' in the '/tmp' directory."""
         with open(filepath, "w") as file:
             file.write("This file was created from ArcoLinux Welcome App.")
