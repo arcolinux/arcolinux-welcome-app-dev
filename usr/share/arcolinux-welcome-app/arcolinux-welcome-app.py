@@ -91,11 +91,6 @@ class Main(Gtk.Window):
         # default pacman lockfile
         self.pacman_lockfile = "/var/lib/pacman/db.lck"
 
-        # selections
-        self.grub_selection = "/tmp/grubselected"
-        self.refind_selection = "/tmp/refindselected"
-        self.boot_selection = "/tmp/bootselected"
-
         # get the username of the user running the welcome app
         self.sudo_username = os.getlogin()
 

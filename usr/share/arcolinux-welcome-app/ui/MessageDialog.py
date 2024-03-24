@@ -82,9 +82,6 @@ class MessageDialogBootloader(Gtk.Dialog):
         self,
         title,
         install_method,
-        grub_selection,
-        refind_selection,
-        boot_selection,
         pacman_lockfile,
         run_app,
         calamares_polkit,
@@ -96,11 +93,13 @@ class MessageDialogBootloader(Gtk.Dialog):
         self.set_modal(True)
         # self.set_default_size(600, 100)
         self.set_resizable(False)
-
+        # selections
+        self.grub_selection = "/tmp/grubselected"
+        self.refind_selection = "/tmp/refindselected"
+        self.boot_selection = "/tmp/bootselected"
+        # pacman lock file
         self.pacman_lockfile = pacman_lockfile
-        self.grub_selection = grub_selection
-        self.refind_selection = refind_selection
-        self.boot_selection = boot_selection
+
         self.run_app = run_app
         self.calamares_polkit = calamares_polkit
 
@@ -182,11 +181,6 @@ class MessageDialogBootloader(Gtk.Dialog):
         self.destroy()
 
     def selection_clean(self, widget):
-        # selections
-        # self.grub_selection = "/tmp/grubselected"
-        # self.refind_selection = "/tmp/refindselected"
-        # self.boot_selection = "/tmp/bootselected"
-
         if os.path.exists(self.grub_selection):
             os.remove(self.grub_selection)
         if os.path.exists(self.refind_selection):
