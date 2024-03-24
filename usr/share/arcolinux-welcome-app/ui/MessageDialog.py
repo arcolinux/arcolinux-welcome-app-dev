@@ -82,6 +82,9 @@ class MessageDialogBootloader(Gtk.Dialog):
         self,
         title,
         install_method,
+        grub_selection,
+        refind_selection,
+        boot_selection,
         pacman_lockfile,
         run_app,
         calamares_polkit,
@@ -95,6 +98,9 @@ class MessageDialogBootloader(Gtk.Dialog):
         self.set_resizable(False)
 
         self.pacman_lockfile = pacman_lockfile
+        self.grub_selection = grub_selection
+        self.refind_selection = refind_selection
+        self.boot_selection = boot_selection
         self.run_app = run_app
         self.calamares_polkit = calamares_polkit
 
@@ -175,8 +181,30 @@ class MessageDialogBootloader(Gtk.Dialog):
     def on_md_cancel_clicked(self, widget):
         self.destroy()
 
+    def selection_clean(self, widget):
+        # selections
+        # self.grub_selection = "/tmp/grubselected"
+        # self.refind_selection = "/tmp/refindselected"
+        # self.boot_selection = "/tmp/bootselected"
+
+        if os.path.exists(self.grub_selection):
+            os.remove(self.grub_selection)
+        if os.path.exists(self.refind_selection):
+            os.remove(self.refind_selection)
+        if os.path.exists(self.boot_selection):
+            os.remove(self.boot_selection)
+
+    def create_selection_file(filepath):
+        """Creates a file named 'xxx' in the '/tmp' directory."""
+        with open(filepath, "w") as file:
+            file.write("This file was created from ArcoLinux Welcome App.")
+        print(f"File created at: {filepath}")
+
     # select GRUB
     def on_bootloader_grub_clicked(self, widget):
+        self.selection_clean()
+        self.create_selection_file("/tmp/grubselected")
+
         if not os.path.exists(self.pacman_lockfile):
             bootloader_file = "/etc/calamares/modules/bootloader-grub.conf"
 
@@ -231,6 +259,9 @@ class MessageDialogBootloader(Gtk.Dialog):
 
     # select systemd-boot
     def on_bootloader_systemd_boot_clicked(self, widget):
+        self.selection_clean()
+        self.create_selection_file("/tmp/bootselected")
+
         if not os.path.exists(self.pacman_lockfile):
             bootloader_file = "/etc/calamares/modules/bootloader-systemd.conf"
 
@@ -280,6 +311,9 @@ class MessageDialogBootloader(Gtk.Dialog):
 
     # select refind
     def on_bootloader_refind_clicked(self, widget):
+        self.selection_clean()
+        self.create_selection_file("/tmp/refindselected")
+
         if not os.path.exists(self.pacman_lockfile):
             bootloader_file = "/etc/calamares/modules/bootloader-refind.conf"
 
