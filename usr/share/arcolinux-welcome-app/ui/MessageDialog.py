@@ -180,7 +180,7 @@ class MessageDialogBootloader(Gtk.Dialog):
     def on_md_cancel_clicked(self, widget):
         self.destroy()
 
-    def selection_clean(self, widget):
+    def selection_clean(self):
         if os.path.exists(self.grub_selection):
             os.remove(self.grub_selection)
         if os.path.exists(self.refind_selection):
