@@ -277,6 +277,8 @@ class MessageDialogBootloader(Gtk.Dialog):
             self.vbox.add(self.label_message)
             self.show_all()
 
+        self.destroy()
+
     # select refind
     def on_bootloader_refind_clicked(self, widget):
         self.selection_clean()
