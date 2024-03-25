@@ -281,9 +281,6 @@ class MessageDialogBootloader(Gtk.Dialog):
 
     # select refind
     def on_bootloader_refind_clicked(self, widget):
-        self.selection_clean()
-        self.create_selection_file("/tmp/refindselected")
-
         if not os.path.exists(self.pacman_lockfile):
             bootloader_file = "/etc/calamares/modules/bootloader-refind.conf"
 
