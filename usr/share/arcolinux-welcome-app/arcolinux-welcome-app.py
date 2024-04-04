@@ -4,6 +4,7 @@
 # =================================================================
 import gi
 import os
+import tempfile
 
 # import conflicts
 # import sys
@@ -204,22 +205,18 @@ class Main(Gtk.Window):
             if arconet_found:
                 # The path to the file you want to edit
                 file_path = "/etc/calamares/modules/shellprocess-before.conf"
-
-                # Open the file and read the lines into a list
-                with open(file_path, "r") as file:
-                    lines = file.readlines()
-
-                # Remove the last line
-                if lines:
-                    lines = lines[:-1]
-
-                # Open the file again in write mode and write the modified list back
-                with open(file_path, "w") as file:
-                    file.writelines(lines)
-            else:
-                print(
-                    "The string 'arconet' was not found in /etc/dev-rel. The script will not proceed."
+                file_path_offline = (
+                    "/etc/calamares/modules/shellprocess-before-offline.conf"
                 )
+
+                app_cmd = [
+                    "sudo",
+                    "cp",
+                    file_path_offline,
+                    file_path,
+                ]
+
+            threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
 
             efi_file_check = self.file_check("/sys/firmware/efi/fw_platform_size")
 
