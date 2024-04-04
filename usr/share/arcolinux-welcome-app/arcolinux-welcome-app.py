@@ -186,6 +186,16 @@ class Main(Gtk.Window):
 
             threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
 
+            if os.path.exists("/etc/calamares/scripts/remove-xfce-offline"):
+                app_cmd = [
+                    "sudo",
+                    "cp",
+                    "/etc/calamares/scripts/remove-xfce-offline",
+                    "/etc/calamares/scripts/remove-xfce",
+                ]
+
+            threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
+
             efi_file_check = self.file_check("/sys/firmware/efi/fw_platform_size")
 
             if efi_file_check is True:
