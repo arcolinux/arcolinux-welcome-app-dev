@@ -186,15 +186,40 @@ class Main(Gtk.Window):
 
             threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
 
-            if os.path.exists("/etc/calamares/scripts/remove-xfce-offline"):
-                app_cmd = [
-                    "sudo",
-                    "cp",
-                    "/etc/calamares/scripts/remove-xfce-offline",
-                    "/etc/calamares/scripts/remove-xfce",
-                ]
+            # arconet specific
+            check_file_path = "/etc/dev-rel"
+            arconet_found = False
+            # Try to open and read from /etc/dev-rel to check for "arconet"
+            try:
+                with open(check_file_path, "r") as check_file:
+                    for line in check_file:
+                        if "arconet" in line:
+                            arconet_found = True
+                            break
+            except FileNotFoundError:
+                print(f"The file {check_file_path} was not found.")
+            except Exception as e:
+                print(f"An error occurred: {e}")
 
-            threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
+            if arconet_found:
+                # The path to the file you want to edit
+                file_path = "/etc/calamares/modules/shellprocess-before.conf"
+
+                # Open the file and read the lines into a list
+                with open(file_path, "r") as file:
+                    lines = file.readlines()
+
+                # Remove the last line
+                if lines:
+                    lines = lines[:-1]
+
+                # Open the file again in write mode and write the modified list back
+                with open(file_path, "w") as file:
+                    file.writelines(lines)
+            else:
+                print(
+                    "The string 'arconet' was not found in /etc/dev-rel. The script will not proceed."
+                )
 
             efi_file_check = self.file_check("/sys/firmware/efi/fw_platform_size")
 
