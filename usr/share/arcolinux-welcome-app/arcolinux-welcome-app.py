@@ -4,7 +4,6 @@
 # =================================================================
 import gi
 import os
-import tempfile
 
 # import conflicts
 # import sys
