@@ -235,7 +235,9 @@ class Main(Gtk.Window):
             if arcopro_found:
                 # The path to the file you want to edit
                 file_path = "/etc/calamares/modules/shellprocess-before.conf"
-                file_path_offline = "shellprocess-before-easy.conf"
+                file_path_offline = (
+                    "/etc/calamares/modules/shellprocess-before-easy.conf"
+                )
 
                 app_cmd = [
                     "sudo",
