@@ -351,6 +351,37 @@ class Main(Gtk.Window):
 
             threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
 
+            # arcopro specific
+            check_file_path = "/etc/dev-rel"
+            arcopro_found = False
+            # Try to open and read from /etc/dev-rel to check for "arconet"
+            try:
+                with open(check_file_path, "r") as check_file:
+                    for line in check_file:
+                        if "arcopro" in line:
+                            arcopro_found = True
+                            break
+            except FileNotFoundError:
+                print(f"The file {check_file_path} was not found.")
+            except Exception as e:
+                print(f"An error occurred: {e}")
+
+            if arcopro_found:
+                # The path to the file you want to edit
+                file_path = "/etc/calamares/modules/shellprocess-before.conf"
+                file_path_online = (
+                    "/etc/calamares/modules/shellprocess-before-advanced.conf"
+                )
+
+                app_cmd = [
+                    "sudo",
+                    "cp",
+                    file_path_online,
+                    file_path,
+                ]
+
+            threading.Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
+
             efi_file_check = self.file_check("/sys/firmware/efi/fw_platform_size")
 
             if efi_file_check is True:
