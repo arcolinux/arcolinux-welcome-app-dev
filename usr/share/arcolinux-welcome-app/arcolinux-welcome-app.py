@@ -26,39 +26,41 @@ from gi.repository import Gtk, GdkPixbuf, GLib, Gdk  # Wnck
 
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 REMOTE_SERVER = "www.google.com"
-css = """
-box#stack_box{
-    padding: 10px 10px 10px 10px;
-}
-button#button_grub_boot_enabled{
-     font-weight: bold;
-     background-color: @theme_base_color_button;
-}
-button#button_systemd_boot_enabled{
-     font-weight: bold;
-     background-color: @theme_base_color_button;
-}
-button#button_easy_install_enabled{
-     font-weight: bold;
-     background-color: @theme_base_color_button;
-}
-button#button_adv_install_enabled{
-     font-weight: bold;
-     background-color: @theme_base_color_button;
-}
-label#label_style {
-    background-color: @theme_base_color;
-    border-top: 1px solid @borders;
-    border-bottom: 1px solid @borders;
-    border-left: 1px solid @borders;
-    border-right: 1px solid @borders;
-    padding: 10px 10px 10px 10px;
-    border-radius: 100px;
-    font-weight: bold;
-    color: #fcfcfc;
-    font-family: 'Open Sans', 'Helvetica', sans-serif;
-}
-"""
+# css = """
+# box#stack_box{
+#     padding: 10px 10px 10px 10px;
+# }
+# button#button_grub_boot_enabled{
+#      font-weight: bold;
+#      background-color: @theme_base_color_button;
+# }
+# button#button_systemd_boot_enabled{
+#      font-weight: bold;
+#      background-color: @theme_base_color_button;
+# }
+# button#button_easy_install_enabled{
+#      font-weight: bold;
+#      background-color: @theme_base_color_button;
+# }
+# button#button_adv_install_enabled{
+#      font-weight: bold;
+#      background-color: @theme_base_color_button;
+# }
+# label#label_style {
+#     background-color: @theme_base_color;
+#     border-top: 1px solid @borders;
+#     border-bottom: 1px solid @borders;
+#     border-left: 1px solid @borders;
+#     border-right: 1px solid @borders;
+#     padding: 10px 10px 10px 10px;
+#     border-radius: 100px;
+#     font-weight: bold;
+#     color: #fcfcfc;
+#     font-family: 'Open Sans', 'Helvetica', sans-serif;
+# }
+# """
+
+css = """ """
 
 
 class Main(Gtk.Window):
