@@ -1033,17 +1033,17 @@ class Main(Gtk.Window):
                 for line in file:
                     if line.startswith("nameserver"):
                         # Extract the IP address part from the line
-                        ip_address = line.strip().split[1]
-                        # Check if the extracted IP address is valid
-                        try:
-                            ipaddress.ip_address(ip_address)
-                            print(
-                                f"Valid global IP found in /etc/resolv.conf: {ip_address}"
-                            )
-                            return True
-                        except ValueError:
-                            # This handles the case where ip_address is not a valid IP
-                            continue
+                        parts = line.strip().split()
+                        if len(parts) > 1:
+                            ip_address = parts[1]
+                            try:
+                                # Validate the IP address
+                                ipaddress.ip_address(ip_address)
+                                print(f"Valid IP found: {ip_address}")
+                                return True
+                            except ValueError:
+                                # This handles the case where ip_address is not a valid IP
+                                continue
         except FileNotFoundError:
             print(f"File not found: {file_path}")
             GLib.idle_add(
