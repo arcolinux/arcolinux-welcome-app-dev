@@ -252,6 +252,7 @@ class MessageDialogBootloader(Gtk.Dialog):
                     partition_file,
                     "/etc/calamares/modules/partition.conf",
                 ]
+                Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
 
             bootloader_file = "/etc/calamares/modules/bootloader-systemd.conf"
 
@@ -313,6 +314,7 @@ class MessageDialogBootloader(Gtk.Dialog):
                     partition_file,
                     "/etc/calamares/modules/partition.conf",
                 ]
+                Thread(target=self.run_app, args=(app_cmd,), daemon=True).start()
 
             bootloader_file = "/etc/calamares/modules/bootloader-refind.conf"
 
