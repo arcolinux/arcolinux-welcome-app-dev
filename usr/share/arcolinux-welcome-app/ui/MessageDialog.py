@@ -177,6 +177,17 @@ class MessageDialogBootloader(Gtk.Dialog):
     # select GRUB
     def on_bootloader_grub_clicked(self, widget):
         if not os.path.exists(self.pacman_lockfile):
+
+            partition_file = "/etc/calamares/modules/partition-luks.conf"
+
+            if os.path.exists(partition_file):
+                app_cmd = [
+                    "sudo",
+                    "cp",
+                    partition_file,
+                    "/etc/calamares/modules/partition.conf",
+                ]
+
             bootloader_file = "/etc/calamares/modules/bootloader-grub.conf"
 
             if os.path.exists(bootloader_file):
